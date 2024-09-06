@@ -61,29 +61,38 @@
      - Considerations for running k8s aware Golang project in k8s cluster
        - Have to use `InClusterConfig`
 
-## Kubernetes Operators
+## Kubernetes Controllers/Operators
 
-1. What is a Kubernetes operator?
+1. Dynamic Admission Controller
+   - Subpoints:
+     - Introducing basics [here]()
+     - Utility of controllers
+       - Validating Resources
+       - Mutating Resources based on whatever logic you want (side effects)
+     - Built in controllers (deployment, cronjob, etc) [here](https://github.com/kubernetes/kubernetes/tree/master/pkg/controller)
+     - Third Party Controllers:
+       - [aws-lb-controller](https://github.com/kubernetes-sigs/aws-load-balancer-controller)
+       - [ingress-nginx](https://github.com/kubernetes/ingress-nginx)
+     - Create custom admission controller
+       - Validating Webhook (k8s deployment check for presense of environment variable)
+       - Mutating Webhook (inject environment variable for every k8s deployment)
+2. What is a Kubernetes operator?
    - Subpoints:
      - Introducing basics [here](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/)
      - Why create operators?
        - Help to extend functionality to interesting use cases
        - Usually used to interact with a 3rd party service and control resource lifecycle on that third party
-     - Built in operators (deployment, cronjob, etc) [here](https://github.com/kubernetes/kubernetes/tree/master/pkg/controller)
-     - Regular Controllers:
-       - [aws-lb-controller](https://github.com/kubernetes-sigs/aws-load-balancer-controller)
-       - [ingress-nginx](https://github.com/kubernetes/ingress-nginx)
      - CRDs:
        - [ArgoCD](https://github.com/argoproj/argo-cd)
        - [Crossplane](https://github.com/crossplane/crossplane)
        - [Tekton](https://tekton.dev/)
-2. Operator SDK
+3. Operator SDK
    - Subpoints:
      - K8s operators are complicated to create from scratch
      - [Operator SDK](https://sdk.operatorframework.io/) makes it easier
      - Explanation of generated code
      - [Tutorial](https://sdk.operatorframework.io/docs/building-operators/golang/tutorial/) on how to use
-3. Creation of custom operator(s)
+4. Creation of custom operator(s)
    - Subpoints:
      - GitHub repository operator
      - S3 bucket operator
